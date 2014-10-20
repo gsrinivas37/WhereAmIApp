@@ -51,7 +51,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             } else {
                 let p:CLPlacemark = CLPlacemark(placemark : placemarks?[0] as CLPlacemark)
                 
-                self.address.text = "\(p.subThoroughfare) \(p.thoroughfare)\n \(p.subLocality)\n\(p.subAdministrativeArea)\n\(p.country)-\(p.postalCode)"
+                var firstLine = ""
+                
+                if(p.subThoroughfare != nil) {
+                    firstLine += p.subThoroughfare
+                }
+                
+                if(p.thoroughfare != nil) {
+                    firstLine += p.thoroughfare
+                }
+                
+                
+                self.address.text = "\(firstLine)\n \(p.subLocality)\n\(p.subAdministrativeArea)\n\(p.country)-\(p.postalCode)"
             }
             
         })
